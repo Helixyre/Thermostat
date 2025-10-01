@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.19)
+cmake_policy(VERSION 3.19...3.22)
+set(MBED_APP_JSON_PATH mbed_app.json5)
+include(/home/chonchon/Documents/mbed-os-master/tools/cmake/mbed_toolchain_setup.cmake)
+project(Thermostat
+# VERSION 1.0.0
+LANGUAGES C CXX ASM)
+include(mbed_project_setup)
+add_subdirectory(/home/chonchon/Documents/mbed-os-master build)
+file(GLOB sources CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/*.h" "${CMAKE_SOURCE_DIR}/*.cpp")
+add_executable(${PROJECT_NAME} ${sources})
+if("MBED_CONF_TARGET_APPLICATION_PROFILE=bare-metal" IN_LIST MBED_CONFIG_DEFINITIONS)
+target_link_libraries(${PROJECT_NAME} mbed-baremetal)
+else()
+target_link_libraries(${PROJECT_NAME} mbed-os)
+endif()
+mbed_set_post_build(${PROJECT_NAME})

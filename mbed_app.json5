@@ -1,0 +1,11 @@
+{
+"target_overrides":
+{
+"*":
+{
+"platform.stdio-baud-rate": 9600,
+"platform.stdio-buffered-serial": 1,
+"target.application-profile": "bare-metal"
+}
+}
+}
