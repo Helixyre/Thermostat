@@ -15,39 +15,35 @@ float count1 = 0.0;
 float count2 = 0.0;
 float count3 = 0.0;
 
-void screen0()
+void screen()
 {
-	sprintf(txt, "TempH ");
-	LCD.locate(0, 1);
-	LCD.puts(txt);
-	sprintf(txt, "Degree: %1f ",count1);
-	LCD.locate(0, 0);
-	LCD.puts(txt);
-}
 
-void screen1()
-{
-	sprintf(txt, "TempL ");
-	LCD.locate(0, 1);
-	LCD.puts(txt);
-	sprintf(txt, "Degree: %1f ",count2);
-	LCD.locate(0, 0);
-	LCD.puts(txt);
-}
+    float temp = ADC0.read();
+    float voltage = temp * 3.3;
+    float tempC = voltage * 100.0;
 
-void screen2()
-{
-	sprintf(txt, "TempAI");
-	LCD.locate(0, 1);
-	LCD.puts(txt);
-	sprintf(txt, "Degree: %1f ",count3);
-	LCD.locate(0, 0);
-	LCD.puts(txt);
+    sprintf(txt, "Temp: %.1f C", tempC);
+    LCD.locate(0,0);
+    LCD.puts(txt);
+
+    switch(page) {
+        case 0:
+            sprintf(txt, "Conf H: %.1f", count1);
+            break;
+        case 1:
+            sprintf(txt, "Conf L: %.1f", count2);
+            break;
+        case 2:
+            sprintf(txt, "Conf AI: %.1f", count3);
+            break;
+    }
+    LCD.locate(0,1);
+    LCD.puts(txt);
 }
 
 void page0()
 {
-	screen0();
+	screen();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
@@ -74,7 +70,7 @@ void page0()
 
 void page1()
 {
-	screen1();
+	screen();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
@@ -101,7 +97,7 @@ void page1()
 
 void page2()
 {
-	screen2();
+	screen();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
