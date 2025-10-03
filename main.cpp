@@ -15,15 +15,39 @@ float count1 = 0.0;
 float count2 = 0.0;
 float count3 = 0.0;
 
-void page0()
+void screen0()
 {
-	//sprintf(txt, "TempH ");
-	sprintf(txt,"0");
+	sprintf(txt, "TempH ");
 	LCD.locate(0, 1);
 	LCD.puts(txt);
 	sprintf(txt, "Degree: %1f ",count1);
 	LCD.locate(0, 0);
 	LCD.puts(txt);
+}
+
+void screen1()
+{
+	sprintf(txt, "TempL ");
+	LCD.locate(0, 1);
+	LCD.puts(txt);
+	sprintf(txt, "Degree: %1f ",count2);
+	LCD.locate(0, 0);
+	LCD.puts(txt);
+}
+
+void screen2()
+{
+	sprintf(txt, "TempAI");
+	LCD.locate(0, 1);
+	LCD.puts(txt);
+	sprintf(txt, "Degree: %1f ",count3);
+	LCD.locate(0, 0);
+	LCD.puts(txt);
+}
+
+void page0()
+{
+	screen0();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
@@ -50,13 +74,7 @@ void page0()
 
 void page1()
 {
-	//sprintf(txt, "TempL ");
-	sprintf(txt,"1");
-	LCD.locate(0, 1);
-	LCD.puts(txt);
-	sprintf(txt, "Degree: %1f ",count2);
-	LCD.locate(0, 0);
-	LCD.puts(txt);
+	screen1();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
@@ -83,13 +101,7 @@ void page1()
 
 void page2()
 {
-	//sprintf(txt, "TempAI");
-	sprintf(txt,"2");
-	LCD.locate(0, 1);
-	LCD.puts(txt);
-	sprintf(txt, "Degree: %1f ",count3);
-	LCD.locate(0, 0);
-	LCD.puts(txt);
+	screen2();
 	if(S1.read() == 0)
 	{
 		thread_sleep_for(100);
