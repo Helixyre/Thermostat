@@ -22,19 +22,19 @@ void screen()
     float voltage = temp * 3.3;
     float tempC = voltage * 100.0;
 
-    sprintf(txt, "Temp: %.1f C", tempC);
+    sprintf(txt, "Temp: %05.2f C", tempC);
     LCD.locate(0,0);
     LCD.puts(txt);
 
     switch(page) {
         case 0:
-            sprintf(txt, "Conf H: %.1f", count1);
+            sprintf(txt, "Conf H: %05.2f", count1);
             break;
         case 1:
-            sprintf(txt, "Conf L: %.1f", count2);
+            sprintf(txt, "Conf L: %05.2f", count2);
             break;
         case 2:
-            sprintf(txt, "Conf AI: %.1f", count3);
+            sprintf(txt, "Conf AI: %05.2f", count3);
             break;
     }
     LCD.locate(0,1);
